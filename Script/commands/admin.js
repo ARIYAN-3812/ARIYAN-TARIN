@@ -1,46 +1,66 @@
-const axios = require("axios");
-const request = require("request");
-const fs = require("fs-extra");
-const moment = require("moment-timezone");
-
 module.exports.config = {
-    name: "admin",
-    version: "1.0.0",
-    hasPermssion: 0,
-    credits: "ULLASH", //don't change my credit 
-    description: "Show Owner Info",
-    commandCategory: "info",
-    usages: "",
-    cooldowns: 5
+	name: "admin",
+	version: "1.0.1", 
+	hasPermssion: 0,
+	credits: "Joshua Sy", //don't change the credits please
+	description: "Admin and Bot info",
+	commandCategory: "info",
+	cooldowns: 1,
+	dependencies: 
+	{
+    "request":"",
+    "fs-extra":"",
+    "axios":""
+  }
 };
+module.exports.run = async function({ api,event,args,client,Users,Threads,__GLOBAL,Currencies }) {
+const axios = global.nodemodule["axios"];
+const request = global.nodemodule["request"];
+const fs = global.nodemodule["fs-extra"];
+const time = process.uptime(),
+		hours = Math.floor(time / (60 * 60)),
+		minutes = Math.floor((time % (60 * 60)) / 60),
+		seconds = Math.floor(time % 60);
+const moment = require("moment-timezone");
+var juswa = moment.tz("Asia/Dhaka").format("『D/MM/YYYY』 【hh:mm:ss】");
+var link = ["https://i.postimg.cc/1tJHSkn2/1740504548780.jpg", 
+            
+            "https://i.postimg.cc/prSJhKBB/1740146513802.jpg", 
+            
+            "https://i.postimg.cc/7Z0nhGJg/1728637121854.jpg",
 
-module.exports.run = async function({ api, event }) {
-    var time = moment().tz("Asia/Dhaka").format("DD/MM/YYYY hh:mm:ss A");
-
-    var callback = () => api.sendMessage({
-        body: `
-┏━━━━━━━━━━━━━━━━━━━━━┓
-┃      🌟 𝗢𝗪𝗡𝗘𝗥 𝗜𝗡𝗙𝗢 🌟      
-┣━━━━━━━━━━━━━━━━━━━━━┫
-┃ 👤 𝐍𝐚𝐦𝐞      : 𝐮 𝐥 𝐥 𝐚 𝐬 𝐡 ッ
-┃ 🚹 𝐆𝐞𝐧𝐝𝐞𝐫    : 𝐌𝐚𝐥𝐞
-┃ ❤️ 𝐑𝐞𝐥𝐚𝐭𝐢𝐨𝐧  : 𝐈𝐧 𝐂𝐨𝐦𝐩𝐥𝐢𝐜𝐚𝐭𝐞𝐝
-┃ 🎂 𝐀𝐠𝐞       : 21
-┃ 🕌 𝐑𝐞𝐥𝐢𝐠𝐢𝐨𝐧  : 𝐈𝐬𝐥𝐚𝐦
-┃ 🏫 𝐄𝐝𝐮𝐜𝐚𝐭𝐢𝐨𝐧 : 𝐝𝐢𝐩𝐥𝐨𝐦𝐚 𝐢𝐧 𝐀𝐠𝐫𝐢𝐜𝐮𝐥𝐭𝐮𝐫𝐞
-┃ 🏡 𝐀𝐝𝐝𝐫𝐞𝐬𝐬  : 𝐍𝐨𝐚𝐤𝐡𝐚𝐥𝐢, 𝐁𝐚𝐧𝐠𝐥𝐚𝐝𝐞𝐬𝐡
-┣━━━━━━━━━━━━━━━━━━━━━┫
-┃ 🎭 𝐓𝐢𝐤𝐭𝐨𝐤  : ullash01
-┃ 📢 𝐓𝐞𝐥𝐞𝐠𝐫𝐚𝐦 : https://t.me/The_morning_star71
-┃ 🌐 𝐅𝐚𝐜𝐞𝐛𝐨𝐨𝐤 : https://www.facebook.com/profile.php?id=100015168369582
-┣━━━━━━━━━━━━━━━━━━━━━┫
-┃ 🕒 𝐔𝐩𝐝𝐚𝐭𝐞𝐝 𝐓𝐢𝐦𝐞:  ${time}
-┗━━━━━━━━━━━━━━━━━━━━━┛
-        `,
-        attachment: fs.createReadStream(__dirname + "/cache/1.png")
-    }, event.threadID, () => fs.unlinkSync(__dirname + "/cache/1.png"));
+            "https://i.postimg.cc/02JpXMfL/IMG-20240704-225140.jpg"];
   
-    return request(encodeURI(`https://graph.facebook.com/100000478146113/picture?height=720&width=720&access_token=6628568379%7Cc1e620fa708a1d5696fb991c1bde5662`))
-        .pipe(fs.createWriteStream(__dirname + '/cache/1.png'))
-        .on('close', () => callback());
-};
+var callback = () => api.sendMessage({body:`𝗔𝘀𝘀𝗮𝗹𝗮𝗺𝘂  𝗔𝗹𝗮𝗶𝗸𝘂𝗺🌺💚𝐀𝐃𝐌𝐈𝐍 𝐀𝐍𝐃 𝐁𝐎𝐓 𝐈𝐍𝐅𝐎𝐑𝐌𝐀𝐓𝐈𝐎𝐍 
+________________________________________
+
+❇️𝐁𝐎𝐓 𝐍𝐀𝐌𝐄 : ${global.config.BOTNAME}
+
+❇️𝐁𝐎𝐓 𝐀𝐃𝐌𝐈𝐍 :  𝗔𝗥𝗜𝗬𝗔𝗡 𝗖𝗛𝗢𝗪𝗗𝗛𝗨𝗥𝗬 
+
+❇️𝐀𝐃𝐃𝐑𝐄𝐒 : 🄿🅄🅃🄷🄸🅈🄰•🅁🄰🄹🅂🄷🄰🄷🄸
+
+_____________𝐂𝐎𝐍𝐓𝐀𝐂𝐓_____________
+
+❇️𝐅𝐀𝐂𝐄𝐁𝐎𝐎𝐊 𝐈𝐃 : https://www.facebook.com/Abal.Tor.Abbu.Irfan.Ariyan
+
+❇️𝐅𝐀𝐂𝐄𝐁𝐎𝐎𝐊 𝐈𝐃 2 :
+https://www.facebook.com/Ariyan.Chowdhury.official.3812
+
+❇️𝐁𝐎𝐓 𝐏𝐑𝐄𝐅𝐈𝐗 : ${global.config.PREFIX}
+
+❇️𝐁𝐎𝐓 𝐎𝐖𝐍𝐄𝐑 : 𝗔𝗥𝗜𝗬𝗔𝗡 𝗖𝗛𝗢𝗪𝗗𝗛𝗨𝗥𝗬 
+
+𝐎𝐓𝐇𝐄𝐑 𝐈𝐍𝐅𝐎𝐑𝐌𝐀𝐓𝐈𝐎𝐍____________________
+
+𝐓𝐘𝐏𝐄 /𝐀𝐃𝐌𝐈𝐍 
+
+➟ 𝐔𝐏𝐓𝐈𝐌𝐄
+
+𝐓𝐎𝐃𝐀𝐘 𝐈𝐒 𝐓𝐈𝐌𝐄 : ${juswa} 
+
+𝐁𝐎𝐓 𝐈𝐒 𝐑𝐔𝐍𝐍𝐈𝐍𝐆 ${hours}:${minutes}:${seconds}.
+
+𝐓𝐇𝐀𝐍𝐊𝐒 𝐅𝐎𝐑 𝐔𝐒𝐈𝐍𝐆  ${global.config.BOTNAME} 『🤖🖤』`,attachment: fs.createReadStream(__dirname + "/cache/juswa.jpg")}, event.threadID, () => fs.unlinkSync(__dirname + "/cache/juswa.jpg")); 
+      return request(encodeURI(link[Math.floor(Math.random() * link.length)])).pipe(fs.createWriteStream(__dirname+"/cache/juswa.jpg")).on("close",() => callback());
+   };
